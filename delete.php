@@ -13,8 +13,14 @@
 
     $query = mysqli_query($conn, $sql);
 
-    if(mysqli_error($conn)=="")
-        header("location: index.php");
+    if(mysqli_error($conn)==""){
+        $status = "true";
+        $msg = "Registro excluido com sucesso!";
+    }else{
+        $status = "error";
+        $msg = "Erro ao excluir registro!";
+    }
+      
+    header("location: index.php?status=$status&msg=$msg");
 
-    echo mysqli_error($conn)
 ?>

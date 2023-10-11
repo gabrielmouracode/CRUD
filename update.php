@@ -16,6 +16,13 @@
     $sql = "UPDATE PROFESSOR SET nome='$nome', nascimento='$nascimento', curso='$curso' WHERE pk_professor=$id";
     $query = mysqli_query($conn, $sql);
 
-    if(mysqli_error($conn)=="")
-        header("location: index.php");
+    if(mysqli_error($conn)==""){
+        $status = "true";
+        $msg = "Registro alterado com sucesso!";
+    }else{
+        $status = "error";
+        $msg = "Erro ao alterar registro!";
+    }
+      
+    header("location: index.php?status=$status&msg=$msg");
 ?>

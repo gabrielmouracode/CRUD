@@ -14,7 +14,13 @@
 
     $sql = "INSERT INTO PROFESSOR (nome, nascimento, curso) VALUES ('$nome', '$nascimento', '$curso');";
     mysqli_query($conn, $sql);
-    if(mysqli_error($conn)=="")
-        header("location: index.php");
-    echo $sql;
+    if(mysqli_error($conn)==""){
+        $status = "true";
+        $msg = "Registro criado com sucesso!";
+    }else{
+        $status = "error";
+        $msg = "Erro ao criar registro!";
+    }
+      
+    header("location: index.php?status=$status&msg=$msg");
 ?>
